@@ -1,0 +1,303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E67ECA5816AF469400055648 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67ECA5716AF469400055648 /* UIKit.framework */; };
+		E67ECA5A16AF469400055648 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67ECA5916AF469400055648 /* Foundation.framework */; };
+		E67ECA5C16AF469400055648 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67ECA5B16AF469400055648 /* CoreGraphics.framework */; };
+		E67ECA6216AF469400055648 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E67ECA6016AF469400055648 /* InfoPlist.strings */; };
+		E67ECA6416AF469400055648 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E67ECA6316AF469400055648 /* main.m */; };
+		E67ECA6816AF469400055648 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E67ECA6716AF469400055648 /* AppDelegate.m */; };
+		E67ECA6A16AF469400055648 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E67ECA6916AF469400055648 /* Default.png */; };
+		E67ECA6C16AF469400055648 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E67ECA6B16AF469400055648 /* Default@2x.png */; };
+		E67ECA6E16AF469400055648 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E67ECA6D16AF469400055648 /* Default-568h@2x.png */; };
+		E67ECA7116AF469400055648 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E67ECA6F16AF469400055648 /* MainStoryboard.storyboard */; };
+		E67ECA7416AF469400055648 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67ECA7316AF469400055648 /* ViewController.m */; };
+		E67ECA7B16AF46BE00055648 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E67ECA7A16AF46BE00055648 /* MessageUI.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E67ECA5316AF469400055648 /* InstaEmail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaEmail.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E67ECA5716AF469400055648 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E67ECA5916AF469400055648 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E67ECA5B16AF469400055648 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E67ECA5F16AF469400055648 /* InstaEmail-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InstaEmail-Info.plist"; sourceTree = "<group>"; };
+		E67ECA6116AF469400055648 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E67ECA6316AF469400055648 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E67ECA6516AF469400055648 /* InstaEmail-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InstaEmail-Prefix.pch"; sourceTree = "<group>"; };
+		E67ECA6616AF469400055648 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E67ECA6716AF469400055648 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E67ECA6916AF469400055648 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E67ECA6B16AF469400055648 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E67ECA6D16AF469400055648 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E67ECA7016AF469400055648 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		E67ECA7216AF469400055648 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E67ECA7316AF469400055648 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E67ECA7A16AF46BE00055648 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E67ECA5016AF469400055648 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E67ECA7B16AF46BE00055648 /* MessageUI.framework in Frameworks */,
+				E67ECA5816AF469400055648 /* UIKit.framework in Frameworks */,
+				E67ECA5A16AF469400055648 /* Foundation.framework in Frameworks */,
+				E67ECA5C16AF469400055648 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E67ECA4816AF469400055648 = {
+			isa = PBXGroup;
+			children = (
+				E67ECA7A16AF46BE00055648 /* MessageUI.framework */,
+				E67ECA5D16AF469400055648 /* InstaEmail */,
+				E67ECA5616AF469400055648 /* Frameworks */,
+				E67ECA5416AF469400055648 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E67ECA5416AF469400055648 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E67ECA5316AF469400055648 /* InstaEmail.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E67ECA5616AF469400055648 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E67ECA5716AF469400055648 /* UIKit.framework */,
+				E67ECA5916AF469400055648 /* Foundation.framework */,
+				E67ECA5B16AF469400055648 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E67ECA5D16AF469400055648 /* InstaEmail */ = {
+			isa = PBXGroup;
+			children = (
+				E67ECA6616AF469400055648 /* AppDelegate.h */,
+				E67ECA6716AF469400055648 /* AppDelegate.m */,
+				E67ECA6F16AF469400055648 /* MainStoryboard.storyboard */,
+				E67ECA7216AF469400055648 /* ViewController.h */,
+				E67ECA7316AF469400055648 /* ViewController.m */,
+				E67ECA5E16AF469400055648 /* Supporting Files */,
+			);
+			path = InstaEmail;
+			sourceTree = "<group>";
+		};
+		E67ECA5E16AF469400055648 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E67ECA5F16AF469400055648 /* InstaEmail-Info.plist */,
+				E67ECA6016AF469400055648 /* InfoPlist.strings */,
+				E67ECA6316AF469400055648 /* main.m */,
+				E67ECA6516AF469400055648 /* InstaEmail-Prefix.pch */,
+				E67ECA6916AF469400055648 /* Default.png */,
+				E67ECA6B16AF469400055648 /* Default@2x.png */,
+				E67ECA6D16AF469400055648 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E67ECA5216AF469400055648 /* InstaEmail */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E67ECA7716AF469400055648 /* Build configuration list for PBXNativeTarget "InstaEmail" */;
+			buildPhases = (
+				E67ECA4F16AF469400055648 /* Sources */,
+				E67ECA5016AF469400055648 /* Frameworks */,
+				E67ECA5116AF469400055648 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InstaEmail;
+			productName = InstaEmail;
+			productReference = E67ECA5316AF469400055648 /* InstaEmail.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E67ECA4A16AF469400055648 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Eric Chiang";
+			};
+			buildConfigurationList = E67ECA4D16AF469400055648 /* Build configuration list for PBXProject "InstaEmail" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E67ECA4816AF469400055648;
+			productRefGroup = E67ECA5416AF469400055648 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E67ECA5216AF469400055648 /* InstaEmail */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E67ECA5116AF469400055648 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E67ECA6216AF469400055648 /* InfoPlist.strings in Resources */,
+				E67ECA6A16AF469400055648 /* Default.png in Resources */,
+				E67ECA6C16AF469400055648 /* Default@2x.png in Resources */,
+				E67ECA6E16AF469400055648 /* Default-568h@2x.png in Resources */,
+				E67ECA7116AF469400055648 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E67ECA4F16AF469400055648 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E67ECA6416AF469400055648 /* main.m in Sources */,
+				E67ECA6816AF469400055648 /* AppDelegate.m in Sources */,
+				E67ECA7416AF469400055648 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E67ECA6016AF469400055648 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E67ECA6116AF469400055648 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E67ECA6F16AF469400055648 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E67ECA7016AF469400055648 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E67ECA7516AF469400055648 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E67ECA7616AF469400055648 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E67ECA7816AF469400055648 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InstaEmail/InstaEmail-Prefix.pch";
+				INFOPLIST_FILE = "InstaEmail/InstaEmail-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E67ECA7916AF469400055648 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InstaEmail/InstaEmail-Prefix.pch";
+				INFOPLIST_FILE = "InstaEmail/InstaEmail-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E67ECA4D16AF469400055648 /* Build configuration list for PBXProject "InstaEmail" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E67ECA7516AF469400055648 /* Debug */,
+				E67ECA7616AF469400055648 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E67ECA7716AF469400055648 /* Build configuration list for PBXNativeTarget "InstaEmail" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E67ECA7816AF469400055648 /* Debug */,
+				E67ECA7916AF469400055648 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E67ECA4A16AF469400055648 /* Project object */;
+}
