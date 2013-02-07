@@ -63,15 +63,15 @@
 
 @implementation MainViewController
 
-@synthesize unfiltered, filtered, pause, filterLabel;
+@synthesize unfiltered, filtered, pause, filterLabel, minZ_label;
 
 // Implement viewDidLoad to do additional setup after loading the view.
 -(void)viewDidLoad
 {
 	[super viewDidLoad];
 	pause.possibleTitles = [NSSet setWithObjects:kLocalizedPause, kLocalizedResume, nil];
-	isPaused = NO;
-	useAdaptive = NO;
+	isPaused = YES;
+	useAdaptive = YES;
 	[self changeFilter:[LowpassFilter class]];
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/kUpdateFrequency];
 	[[UIAccelerometer sharedAccelerometer] setDelegate:self];
@@ -90,7 +90,14 @@
 	self.filtered = nil;
 	self.pause = nil;
 	self.filterLabel = nil;
+	self.minZ_label = nil;
 }
+
+
+//Red: X
+//Green: Y
+//Blue: Z
+
 
 // UIAccelerometerDelegate method, called when the device accelerates.
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
@@ -98,16 +105,37 @@
     //frameCount ++;
     int y = 0;
     if (isTouched){
-        y =2;
+        
+        minX_label.text = [NSString stringWithFormat:@"%g", acceleration.x];
+        minY_label.text = [NSString stringWithFormat:@"%g", acceleration.y];
+        minZ_label.text = [NSString stringWithFormat:@"%g", acceleration.z];
+        maxX_label.text = [NSString stringWithFormat:@"%g", acceleration.x];
+        maxY_label.text = [NSString stringWithFormat:@"%g", acceleration.y];
+        maxZ_label.text = [NSString stringWithFormat:@"%g", acceleration.z];
+        test_label.text = [NSString stringWithFormat:@"%g", acceleration.z];
     }
+    
     
 	// Update the accelerometer graph view
 	if(!isPaused)
 	{
-		maxZ = [filter addAcceleration:acceleration touch:isTouched];
-		[unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
-        //[filtered addX:filter.x y:filter.y z:filter.z];
-		[filtered addX:filter.z y:y z:maxZ];
+        // x = 
+        test_label.text = 
+        
+        //text.text = [NSString stringWithFormat:@"%g", acceleration.z];
+        minX_label.text = (acceleration.x < [minX_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.x] : minX_label.text;
+        minY_label.text = (acceleration.y < [minY_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.y] : minY_label.text;
+        minZ_label.text = (acceleration.z < [minZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : minZ_label.text;
+        
+        maxX_label.text = (acceleration.x > [maxX_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.x] : maxX_label.text;
+        maxY_label.text = (acceleration.y > [maxY_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.y] : maxY_label.text;
+        maxZ_label.text = (acceleration.z > [maxZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : maxZ_label.text;
+        
+//        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
+        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
+		//maxZ = [filter addAcceleration:acceleration touch:isTouched];
+		
+		//[filtered addX:filter.z y:y z:maxZ];
 	}
     isTouched = FALSE;
 }
@@ -128,7 +156,7 @@
 		[filter release];
 		filter = [[filterClass alloc] initWithSampleRate:kUpdateFrequency cutoffFrequency:5.0];
 		// Set the adaptive flag
-		filter.adaptive = useAdaptive;
+//		filter.adaptive = useAdaptive;
 		// And update the filterLabel with the new filter name.
 		filterLabel.text = filter.name;
 	}
@@ -140,8 +168,7 @@
 	{
 		// If we're paused, then resume and set the title to "Pause"
 		isPaused = NO;
-		pause.title = kLocalizedPause;
-	}
+		pause.title = kLocalizedPause;	}
 	else
 	{
 		// If we are not paused, then pause and set the title to "Resume"
@@ -153,6 +180,16 @@
 	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
 }
 
+-(IBAction)clearPressed:(id)sender
+{
+    minX_label.text = @"0.0";
+    minY_label.text = @"0.0";
+    minZ_label.text = @"0.0";
+    maxX_label.text = @"0.0";
+    maxY_label.text = @"0.0";
+    maxZ_label.text = @"0.0";
+}
+/*d
 -(IBAction)filterSelect:(id)sender
 {
 	if([sender selectedSegmentIndex] == 0)
@@ -181,7 +218,7 @@
 	// Inform accessibility clients that the adaptive selection has changed.
 	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
 }
-
+*/
 -(void)dealloc
 {
 	// clean up everything.

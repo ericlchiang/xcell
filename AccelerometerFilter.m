@@ -120,8 +120,15 @@ double Clamp(double v, double min, double max)
 	}
 	
 	x = accel.x * alpha + x * (1.0 - alpha);
+    
 	y = accel.y * alpha + y * (1.0 - alpha);
 	z = accel.z * alpha + z * (1.0 - alpha);
+    
+    /*
+     x = accel.x * alpha + x * (1.0 - alpha);
+     y = accel.y * alpha + y * (1.0 - alpha);
+     z = accel.z * alpha + z * (1.0 - alpha);
+     */
 }
 
 -(NSString*)name

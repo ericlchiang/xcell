@@ -59,15 +59,32 @@
 	AccelerometerFilter *filter;
 	BOOL isPaused, useAdaptive, isTouched;
     float maxZ;
+    UILabel *minX_label;
+    UILabel *minY_label;
+    UILabel *minZ_label;
+    UILabel *maxX_label;
+    UILabel *maxY_label;
+    UILabel *maxZ_label;
+    UILabel *test_label;
+    
 }
 
 @property(nonatomic, retain) IBOutlet GraphView *unfiltered;
 @property(nonatomic, retain) IBOutlet GraphView *filtered;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem *pause;
 @property(nonatomic, retain) IBOutlet UILabel *filterLabel;
+@property (retain, nonatomic) IBOutlet UILabel *minX_label;
+@property (retain, nonatomic) IBOutlet UILabel *minY_label;
+@property (retain, nonatomic) IBOutlet UILabel *minZ_label;
+@property (retain, nonatomic) IBOutlet UILabel *maxX_label;
+@property (retain, nonatomic) IBOutlet UILabel *maxY_label;
+@property (retain, nonatomic) IBOutlet UILabel *maxZ_label;
+@property (retain, nonatomic) IBOutlet UILabel *test_label;
 
 -(IBAction)pauseOrResume:(id)sender;
--(IBAction)filterSelect:(id)sender;
--(IBAction)adaptiveSelect:(id)sender;
+-(IBAction)clearPressed:(id)sender;
+
+//-(IBAction)filterSelect:(id)sender;
+//-(IBAction)adaptiveSelect:(id)sender;
 
 @end
