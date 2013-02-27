@@ -49,6 +49,8 @@
 #import "GraphView.h"
 #import "AccelerometerFilter.h"
 
+
+
 #define kUpdateFrequency	1000.0
 #define kLocalizedPause		NSLocalizedString(@"Pause","pause taking samples")
 #define kLocalizedResume	NSLocalizedString(@"Resume","resume taking samples")
@@ -70,7 +72,7 @@
 {
 	[super viewDidLoad];
 	pause.possibleTitles = [NSSet setWithObjects:kLocalizedPause, kLocalizedResume, nil];
-	isPaused = YES;
+	isPaused = NO;
 	useAdaptive = YES;
 	[self changeFilter:[LowpassFilter class]];
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/kUpdateFrequency];
@@ -119,10 +121,6 @@
 	// Update the accelerometer graph view
 	if(!isPaused)
 	{
-        // x = 
-        test_label.text = 
-        
-        //text.text = [NSString stringWithFormat:@"%g", acceleration.z];
         minX_label.text = (acceleration.x < [minX_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.x] : minX_label.text;
         minY_label.text = (acceleration.y < [minY_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.y] : minY_label.text;
         minZ_label.text = (acceleration.z < [minZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : minZ_label.text;
@@ -132,9 +130,11 @@
         maxZ_label.text = (acceleration.z > [maxZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : maxZ_label.text;
         
 //        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
-        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
-		//maxZ = [filter addAcceleration:acceleration touch:isTouched];
-		
+//        [filtered addX:acceleration.x y:acceleration.y z:acceleration.z];
+
+        [filter addAcceleration:acceleration];
+		[filtered addX:filter.x y:filter.y z:filter.z];
+        
 		//[filtered addX:filter.z y:y z:maxZ];
 	}
     isTouched = FALSE;

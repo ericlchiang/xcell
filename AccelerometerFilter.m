@@ -109,9 +109,10 @@ double Clamp(double v, double min, double max)
 	return self;
 }
 
+//THIS IS IT
 -(void)addAcceleration:(UIAcceleration*)accel
 {
-	double alpha = filterConstant;
+	double alpha = filterConstant*10;
 	
 	if(adaptive)
 	{

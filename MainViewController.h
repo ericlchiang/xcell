@@ -52,6 +52,7 @@
 
 @interface MainViewController : UIViewController<UIAccelerometerDelegate>
 {
+    
 	GraphView *unfiltered;
 	GraphView *filtered;
 	UIBarButtonItem *pause;
@@ -83,6 +84,7 @@
 
 -(IBAction)pauseOrResume:(id)sender;
 -(IBAction)clearPressed:(id)sender;
+-(IBAction)SwitchView:(id)sender;
 
 //-(IBAction)filterSelect:(id)sender;
 //-(IBAction)adaptiveSelect:(id)sender;
