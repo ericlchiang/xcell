@@ -56,7 +56,7 @@
 }
 
 // Add a UIAcceleration to the filter.
--(void)addAcceleration:(UIAcceleration*)accel;
+-(NSArray*)addAcceleration:(UIAcceleration*)accel;
 -(float)addAcceleration:(UIAcceleration *)accel touch:(BOOL)isTouched;
 
 @property(nonatomic, readonly) UIAccelerationValue x;

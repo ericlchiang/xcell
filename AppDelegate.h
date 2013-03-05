@@ -45,13 +45,19 @@ Copyright (C) 2010 Apple Inc. All Rights Reserved.
 
 */
 
+
+#import "MainViewController.h"
+#import "SecondaryViewController.h"
+
 @interface AppDelegate : NSObject<UIApplicationDelegate>
 {
     UIWindow *window;
 	UIViewController *viewController;
+    UIViewController *secondViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UIViewController *viewController;
+@property (nonatomic, retain) IBOutlet UIViewController *secondViewController;
 
 @end

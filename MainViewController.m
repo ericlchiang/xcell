@@ -1,7 +1,7 @@
 /*
-     File: MainViewController.m
+ File: MainViewController.m
  Abstract: Responsible for all UI interactions with the user and the accelerometer
-  Version: 2.5
+ Version: 2.5
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -43,11 +43,13 @@
  
  Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
-*/
+ */
 
 #import "MainViewController.h"
 #import "GraphView.h"
 #import "AccelerometerFilter.h"
+
+
 
 #define kUpdateFrequency	1000.0
 #define kLocalizedPause		NSLocalizedString(@"Pause","pause taking samples")
@@ -63,14 +65,20 @@
 
 @implementation MainViewController
 
-@synthesize unfiltered, filtered, pause, filterLabel, minZ_label;
+@synthesize unfiltered, filtered, pause, filterLabel, minZ_label, scrollView;
 
 // Implement viewDidLoad to do additional setup after loading the view.
 -(void)viewDidLoad
 {
+    //---set the viewable frame of the scroll view---
+    scrollView.frame = CGRectMake(0, 0, 320, 460);
+    
+    //---set the content size of the scroll view---
+    [scrollView setContentSize:CGSizeMake(320, 713)];
+    
 	[super viewDidLoad];
 	pause.possibleTitles = [NSSet setWithObjects:kLocalizedPause, kLocalizedResume, nil];
-	isPaused = YES;
+	isPaused = NO;
 	useAdaptive = YES;
 	[self changeFilter:[LowpassFilter class]];
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/kUpdateFrequency];
@@ -78,14 +86,21 @@
 	
 	[unfiltered setIsAccessibilityElement:YES];
 	[unfiltered setAccessibilityLabel:NSLocalizedString(@"unfilteredGraph", @"")];
-
+    
 	[filtered setIsAccessibilityElement:YES];
-	[filtered setAccessibilityLabel:NSLocalizedString(@"filteredGraph", @"")];
+	[filtered setAccessibilityLabel:NSLocalizedString(@"filteredGraph", @"")];   
+//    
+//    // The account scrolling area
+//    // define the area that is initially visable
+//    scrollView.frame = CGRectMake(74, 261, 620, 354);
+//    // then define how much they can scroll it
+//    [scrollView setContentSize:CGSizeMake(1220, 354)];
 }
 
 -(void)viewDidUnload
 {
 	[super viewDidUnload];
+    [scrollView release];
 	self.unfiltered = nil;
 	self.filtered = nil;
 	self.pause = nil;
@@ -93,6 +108,12 @@
 	self.minZ_label = nil;
 }
 
+-(void)switchView:(id)sender
+{
+     test_label.text = @"yeak";
+    //[window addSubview:viewController.view];
+
+}
 
 //Red: X
 //Green: Y
@@ -119,22 +140,29 @@
 	// Update the accelerometer graph view
 	if(!isPaused)
 	{
-        // x = 
-        test_label.text = 
         
-        //text.text = [NSString stringWithFormat:@"%g", acceleration.z];
-        minX_label.text = (acceleration.x < [minX_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.x] : minX_label.text;
-        minY_label.text = (acceleration.y < [minY_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.y] : minY_label.text;
-        minZ_label.text = (acceleration.z < [minZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : minZ_label.text;
+        NSArray *accel = [filter addAcceleration:acceleration];
         
-        maxX_label.text = (acceleration.x > [maxX_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.x] : maxX_label.text;
-        maxY_label.text = (acceleration.y > [maxY_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.y] : maxY_label.text;
-        maxZ_label.text = (acceleration.z > [maxZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : maxZ_label.text;
         
-//        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
-        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
-		//maxZ = [filter addAcceleration:acceleration touch:isTouched];
-		
+		[filtered addX:filter.x y:filter.y z:filter.z];
+        
+        NSString *filteredX = [accel objectAtIndex: 0];
+        NSString *filteredY = [accel objectAtIndex: 1];
+        NSString *filteredZ = [accel objectAtIndex: 2];
+        
+        
+        minX_label.text = (filteredX.doubleValue < [minX_label.text doubleValue])? filteredX : minX_label.text;
+        minY_label.text = (filteredY.doubleValue < [minY_label.text doubleValue])? filteredY : minY_label.text;
+        minZ_label.text = (filteredZ.doubleValue < [minZ_label.text doubleValue])? filteredZ : minZ_label.text;
+        
+        maxX_label.text = (filteredX.doubleValue > [maxX_label.text doubleValue])? filteredX : maxX_label.text;
+        maxY_label.text = (filteredY.doubleValue > [maxY_label.text doubleValue])? filteredY : maxY_label.text;
+        maxZ_label.text = (filteredZ.doubleValue > [maxZ_label.text doubleValue])? filteredZ : maxZ_label.text;
+        
+        //        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
+        //        [filtered addX:acceleration.x y:acceleration.y z:acceleration.z];
+      
+        
 		//[filtered addX:filter.z y:y z:maxZ];
 	}
     isTouched = FALSE;
@@ -156,7 +184,7 @@
 		[filter release];
 		filter = [[filterClass alloc] initWithSampleRate:kUpdateFrequency cutoffFrequency:5.0];
 		// Set the adaptive flag
-//		filter.adaptive = useAdaptive;
+        //		filter.adaptive = useAdaptive;
 		// And update the filterLabel with the new filter name.
 		filterLabel.text = filter.name;
 	}
@@ -190,35 +218,35 @@
     maxZ_label.text = @"0.0";
 }
 /*d
--(IBAction)filterSelect:(id)sender
-{
-	if([sender selectedSegmentIndex] == 0)
-	{
-		// Index 0 of the segment selects the lowpass filter
-		[self changeFilter:[LowpassFilter class]];
-	}
-	else
-	{
-		// Index 1 of the segment selects the highpass filter
-		[self changeFilter:[HighpassFilter class]];
-	}
-
-	// Inform accessibility clients that the filter has changed.
-	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
-}
-
--(IBAction)adaptiveSelect:(id)sender
-{
-	// Index 1 is to use the adaptive filter, so if selected then set useAdaptive appropriately
-	useAdaptive = [sender selectedSegmentIndex] == 1;
-	// and update our filter and filterLabel
-	filter.adaptive = useAdaptive;
-	filterLabel.text = filter.name;
-	
-	// Inform accessibility clients that the adaptive selection has changed.
-	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
-}
-*/
+ -(IBAction)filterSelect:(id)sender
+ {
+ if([sender selectedSegmentIndex] == 0)
+ {
+ // Index 0 of the segment selects the lowpass filter
+ [self changeFilter:[LowpassFilter class]];
+ }
+ else
+ {
+ // Index 1 of the segment selects the highpass filter
+ [self changeFilter:[HighpassFilter class]];
+ }
+ 
+ // Inform accessibility clients that the filter has changed.
+ UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+ }
+ 
+ -(IBAction)adaptiveSelect:(id)sender
+ {
+ // Index 1 is to use the adaptive filter, so if selected then set useAdaptive appropriately
+ useAdaptive = [sender selectedSegmentIndex] == 1;
+ // and update our filter and filterLabel
+ filter.adaptive = useAdaptive;
+ filterLabel.text = filter.name;
+ 
+ // Inform accessibility clients that the adaptive selection has changed.
+ UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+ }
+ */
 -(void)dealloc
 {
 	// clean up everything.

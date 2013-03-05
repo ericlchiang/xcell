@@ -8,12 +8,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MainViewController.m"
-         timestampString = "381885906.989048"
+         timestampString = "384135059.04348"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "173"
-         endingLineNumber = "173"
+         startingLineNumber = "201"
+         endingLineNumber = "201"
          landmarkName = "-pauseOrResume:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "AccelerometerFilter.m"
+         timestampString = "383692542.086285"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "130"
+         endingLineNumber = "130"
+         landmarkName = "-addAcceleration:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

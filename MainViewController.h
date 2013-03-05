@@ -1,7 +1,7 @@
 /*
-     File: MainViewController.h
+ File: MainViewController.h
  Abstract: Responsible for all UI interactions with the user and the accelerometer
-  Version: 2.5
+ Version: 2.5
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -43,7 +43,7 @@
  
  Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
-*/
+ */
 
 #import <UIKit/UIKit.h>
 
@@ -52,6 +52,7 @@
 
 @interface MainViewController : UIViewController<UIAccelerometerDelegate>
 {
+    
 	GraphView *unfiltered;
 	GraphView *filtered;
 	UIBarButtonItem *pause;
@@ -67,7 +68,11 @@
     UILabel *maxZ_label;
     UILabel *test_label;
     
+    IBOutlet UIScrollView *scrollView;
+    
 }
+
+@property (nonatomic, retain) UIScrollView *scrollView;
 
 @property(nonatomic, retain) IBOutlet GraphView *unfiltered;
 @property(nonatomic, retain) IBOutlet GraphView *filtered;
@@ -83,6 +88,8 @@
 
 -(IBAction)pauseOrResume:(id)sender;
 -(IBAction)clearPressed:(id)sender;
+-(IBAction)switchView:(id)sender;
+
 
 //-(IBAction)filterSelect:(id)sender;
 //-(IBAction)adaptiveSelect:(id)sender;

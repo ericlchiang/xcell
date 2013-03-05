@@ -1,7 +1,7 @@
 /*
-     File: AccelerometerFilter.m
+ File: AccelerometerFilter.m
  Abstract: Implements a low and high pass filter with optional adaptive filtering.
-  Version: 2.5
+ Version: 2.5
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -43,7 +43,7 @@
  
  Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
-*/
+ */
 
 #import "AccelerometerFilter.h"
 #import "Queue.h"
@@ -54,12 +54,12 @@
 
 @synthesize x, y, z, adaptive;
 
--(void)addAcceleration:(UIAcceleration*)accel
-{
-	x = accel.x;
-	y = accel.y;
-	z = accel.z;
-}
+//-(void)addAcceleration:(UIAcceleration*)accel
+//{
+//	x = accel.x;
+//	y = accel.y;
+//	z = accel.z;
+//}
 
 -(float)addAcceleration:(UIAcceleration*)accel touch:(BOOL)isTouched
 {
@@ -109,9 +109,10 @@ double Clamp(double v, double min, double max)
 	return self;
 }
 
--(void)addAcceleration:(UIAcceleration*)accel
+//THIS IS IT
+-(NSArray*)addAcceleration:(UIAcceleration*)accel
 {
-	double alpha = filterConstant;
+	double alpha = filterConstant*10;
 	
 	if(adaptive)
 	{
@@ -124,11 +125,18 @@ double Clamp(double v, double min, double max)
 	y = accel.y * alpha + y * (1.0 - alpha);
 	z = accel.z * alpha + z * (1.0 - alpha);
     
+    NSArray *myAccelerations;
+    
+  
+    myAccelerations = [NSArray arrayWithObjects: [NSString stringWithFormat:@"%f", x], [NSString stringWithFormat:@"%f", y], [NSString stringWithFormat:@"%f", z], nil];
+    
     /*
      x = accel.x * alpha + x * (1.0 - alpha);
      y = accel.y * alpha + y * (1.0 - alpha);
      z = accel.z * alpha + z * (1.0 - alpha);
      */
+    
+    return myAccelerations;
 }
 
 -(NSString*)name
@@ -161,82 +169,82 @@ double Clamp(double v, double min, double max)
 	}
 	return self;
 }
-
--(void)addAcceleration:(UIAcceleration*)accel
-{
-	double alpha = filterConstant;
-	
-	if(adaptive)
-	{
-		double d = Clamp(fabs(Norm(x, y, z) - Norm(accel.x, accel.y, accel.z)) / kAccelerometerMinStep - 1.0, 0.0, 1.0);
-		alpha = d * filterConstant / kAccelerometerNoiseAttenuation + (1.0 - d) * filterConstant;
-	}
-	
-	x = alpha * (x + accel.x - lastX);
-	y = alpha * (y + accel.y - lastY);
-	z = alpha * (z + accel.z - lastZ);
-	
-	lastX = accel.x;
-	lastY = accel.y;
-	lastZ = accel.z;    
-}
-
--(float)addAcceleration:(UIAcceleration*)accel touch:(BOOL)isTouched
-{
-	double alpha = filterConstant;
-	
-	if(adaptive)
-	{
-		double d = Clamp(fabs(Norm(x, y, z) - Norm(accel.x, accel.y, accel.z)) / kAccelerometerMinStep - 1.0, 0.0, 1.0);
-		alpha = d * filterConstant / kAccelerometerNoiseAttenuation + (1.0 - d) * filterConstant;
-	}
-	
-	x = alpha * (x + accel.x - lastX);
-	y = alpha * (y + accel.y - lastY);
-	z = alpha * (z + accel.z - lastZ);
-	
-	lastX = accel.x;
-	lastY = accel.y;
-	lastZ = accel.z;
-    
-    // Add data to accel history
-    [xHistory enqueue:[NSNumber numberWithFloat:x]];
-    [yHistory enqueue:[NSNumber numberWithFloat:y]];
-    [zHistory enqueue:[NSNumber numberWithFloat:z]];
-    
-    float maxZ = 0.0;
-    int touchIndex = [tHistory contains:[NSNumber numberWithBool:TRUE]];
-    if(touchIndex == -1) {
-        if(isTouched){
-            for (int i = 0; i < zHistory.capacity; i++) {
-                float value = [[zHistory objectAtIndex:i] floatValue];
-                if(maxZ < value) maxZ = value;
-            }
-            [tHistory enqueue:[NSNumber numberWithBool:isTouched]];
-            [tValueHistory enqueue:[NSNumber numberWithFloat:maxZ]];
-            maxZ = 0;
-        }
-        return maxZ;
-    }
-    else {
-        if(isTouched) {
-
-        }
-        else {
-            if( touchIndex == 0) {
-                maxZ = [[tValueHistory objectAtIndex:touchIndex] floatValue];
-                
-                for(int j = 0; j < zHistory.capacity; j++){
-                    if([[zHistory objectAtIndex:j] floatValue] > maxZ)
-                        maxZ = [[zHistory objectAtIndex:j] floatValue];
-                }
-            }
-        }
-    }
-    [tHistory enqueue:[NSNumber numberWithBool:isTouched]];
-    [tValueHistory enqueue:[NSNumber numberWithFloat:maxZ]];
-    return maxZ;
-}
+//
+//-(void)addAcceleration:(UIAcceleration*)accel
+//{
+//	double alpha = filterConstant;
+//	
+//	if(adaptive)
+//	{
+//		double d = Clamp(fabs(Norm(x, y, z) - Norm(accel.x, accel.y, accel.z)) / kAccelerometerMinStep - 1.0, 0.0, 1.0);
+//		alpha = d * filterConstant / kAccelerometerNoiseAttenuation + (1.0 - d) * filterConstant;
+//	}
+//	
+//	x = alpha * (x + accel.x - lastX);
+//	y = alpha * (y + accel.y - lastY);
+//	z = alpha * (z + accel.z - lastZ);
+//	
+//	lastX = accel.x;
+//	lastY = accel.y;
+//	lastZ = accel.z;
+//}
+//
+//-(float)addAcceleration:(UIAcceleration*)accel touch:(BOOL)isTouched
+//{
+//	double alpha = filterConstant;
+//	
+//	if(adaptive)
+//	{
+//		double d = Clamp(fabs(Norm(x, y, z) - Norm(accel.x, accel.y, accel.z)) / kAccelerometerMinStep - 1.0, 0.0, 1.0);
+//		alpha = d * filterConstant / kAccelerometerNoiseAttenuation + (1.0 - d) * filterConstant;
+//	}
+//	
+//	x = alpha * (x + accel.x - lastX);
+//	y = alpha * (y + accel.y - lastY);
+//	z = alpha * (z + accel.z - lastZ);
+//	
+//	lastX = accel.x;
+//	lastY = accel.y;
+//	lastZ = accel.z;
+//    
+//    // Add data to accel history
+//    [xHistory enqueue:[NSNumber numberWithFloat:x]];
+//    [yHistory enqueue:[NSNumber numberWithFloat:y]];
+//    [zHistory enqueue:[NSNumber numberWithFloat:z]];
+//    
+//    float maxZ = 0.0;
+//    int touchIndex = [tHistory contains:[NSNumber numberWithBool:TRUE]];
+//    if(touchIndex == -1) {
+//        if(isTouched){
+//            for (int i = 0; i < zHistory.capacity; i++) {
+//                float value = [[zHistory objectAtIndex:i] floatValue];
+//                if(maxZ < value) maxZ = value;
+//            }
+//            [tHistory enqueue:[NSNumber numberWithBool:isTouched]];
+//            [tValueHistory enqueue:[NSNumber numberWithFloat:maxZ]];
+//            maxZ = 0;
+//        }
+//        return maxZ;
+//    }
+//    else {
+//        if(isTouched) {
+//            
+//        }
+//        else {
+//            if( touchIndex == 0) {
+//                maxZ = [[tValueHistory objectAtIndex:touchIndex] floatValue];
+//                
+//                for(int j = 0; j < zHistory.capacity; j++){
+//                    if([[zHistory objectAtIndex:j] floatValue] > maxZ)
+//                        maxZ = [[zHistory objectAtIndex:j] floatValue];
+//                }
+//            }
+//        }
+//    }
+//    [tHistory enqueue:[NSNumber numberWithBool:isTouched]];
+//    [tValueHistory enqueue:[NSNumber numberWithFloat:maxZ]];
+//    return maxZ;
+//}
 
 -(NSString*)name
 {
