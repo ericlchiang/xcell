@@ -8,7 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MainViewController.m"
+<<<<<<< HEAD
          timestampString = "384135059.04348"
+=======
+         timestampString = "382495845.970643"
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "201"
@@ -20,6 +24,7 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
+<<<<<<< HEAD
          filePath = "AccelerometerFilter.m"
          timestampString = "383692542.086285"
          startingColumnNumber = "9223372036854775807"
@@ -28,6 +33,29 @@
          endingLineNumber = "130"
          landmarkName = "-addAcceleration:"
          landmarkType = "5">
+=======
+         filePath = "MainViewController.h"
+         timestampString = "382495845.970643"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "67"
+         endingLineNumber = "67"
+         landmarkName = "@interface MainViewController"
+         landmarkType = "2">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "MainViewController.h"
+         timestampString = "383036258.046664"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
+         landmarkName = "@interface MainViewController"
+         landmarkType = "2">
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

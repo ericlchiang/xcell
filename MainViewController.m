@@ -140,6 +140,7 @@
 	// Update the accelerometer graph view
 	if(!isPaused)
 	{
+<<<<<<< HEAD
         
         NSArray *accel = [filter addAcceleration:acceleration];
         
@@ -149,8 +150,14 @@
         NSString *filteredX = [accel objectAtIndex: 0];
         NSString *filteredY = [accel objectAtIndex: 1];
         NSString *filteredZ = [accel objectAtIndex: 2];
+=======
+        minX_label.text = (acceleration.x < [minX_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.x] : minX_label.text;
+        minY_label.text = (acceleration.y < [minY_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.y] : minY_label.text;
+        minZ_label.text = (acceleration.z < [minZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : minZ_label.text;
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
         
         
+<<<<<<< HEAD
         minX_label.text = (filteredX.doubleValue < [minX_label.text doubleValue])? filteredX : minX_label.text;
         minY_label.text = (filteredY.doubleValue < [minY_label.text doubleValue])? filteredY : minY_label.text;
         minZ_label.text = (filteredZ.doubleValue < [minZ_label.text doubleValue])? filteredZ : minZ_label.text;
@@ -162,6 +169,13 @@
         //        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
         //        [filtered addX:acceleration.x y:acceleration.y z:acceleration.z];
       
+=======
+//        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
+//        [filtered addX:acceleration.x y:acceleration.y z:acceleration.z];
+
+        [filter addAcceleration:acceleration];
+		[filtered addX:filter.x y:filter.y z:filter.z];
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
         
 		//[filtered addX:filter.z y:y z:maxZ];
 	}

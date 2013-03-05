@@ -88,8 +88,12 @@
 
 -(IBAction)pauseOrResume:(id)sender;
 -(IBAction)clearPressed:(id)sender;
+<<<<<<< HEAD
 -(IBAction)switchView:(id)sender;
 
+=======
+-(IBAction)SwitchView:(id)sender;
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
 
 //-(IBAction)filterSelect:(id)sender;
 //-(IBAction)adaptiveSelect:(id)sender;

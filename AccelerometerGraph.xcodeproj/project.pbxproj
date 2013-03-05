@@ -141,15 +141,15 @@
 		2D500B1D0D5A766B00DBA0E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D08E3036141F4C31006E9969 /* Queue.h */,
 				639046AE0F7C400300F2FB94 /* AccelerometerFilter.h */,
 				639046AF0F7C400300F2FB94 /* AccelerometerFilter.m */,
 				30D873950D76212900B213B8 /* AppDelegate.h */,
 				30D873960D76212900B213B8 /* AppDelegate.m */,
 				6390467D0F7C386600F2FB94 /* MainViewController.h */,
-				6390467E0F7C386600F2FB94 /* MainViewController.m */,
 				6390470B0F7C4B3B00F2FB94 /* GraphView.h */,
+				6390467E0F7C386600F2FB94 /* MainViewController.m */,
 				6390470C0F7C4B3B00F2FB94 /* GraphView.m */,
-				D08E3036141F4C31006E9969 /* Queue.h */,
 				D08E3037141F4CDD006E9969 /* Queue.m */,
 				E606785A16D54FD4008C53DC /* SecondaryViewController.h */,
 				E606785B16D54FD4008C53DC /* SecondaryViewController.m */,
@@ -280,6 +280,10 @@
 				);
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -304,6 +308,10 @@
 				);
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
