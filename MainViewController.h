@@ -1,7 +1,7 @@
 /*
-     File: MainViewController.h
+ File: MainViewController.h
  Abstract: Responsible for all UI interactions with the user and the accelerometer
-  Version: 2.5
+ Version: 2.5
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -43,7 +43,7 @@
  
  Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
-*/
+ */
 
 #import <UIKit/UIKit.h>
 
@@ -52,37 +52,50 @@
 
 @interface MainViewController : UIViewController<UIAccelerometerDelegate>
 {
+    
 	GraphView *unfiltered;
 	GraphView *filtered;
 	UIBarButtonItem *pause;
 	UILabel *filterLabel;
 	AccelerometerFilter *filter;
-	BOOL isPaused, useAdaptive, isTouched;
+	BOOL player1IsPaused, player2IsPaused, useAdaptive, isTouched;
     float maxZ;
-    UILabel *minX_label;
-    UILabel *minY_label;
-    UILabel *minZ_label;
-    UILabel *maxX_label;
-    UILabel *maxY_label;
-    UILabel *maxZ_label;
+    UILabel *player1X_label;
+    UILabel *player1Y_label;
+    UILabel *player1Z_label;
+    UILabel *player2X_label;
+    UILabel *player2Y_label;
+    UILabel *player2Z_label;
     UILabel *test_label;
+    
+    IBOutlet UIScrollView *scrollView;
     
 }
 
-@property(nonatomic, retain) IBOutlet GraphView *unfiltered;
-@property(nonatomic, retain) IBOutlet GraphView *filtered;
+@property (nonatomic, retain) UIScrollView *scrollView;
+
+//@property(nonatomic, retain) IBOutlet GraphView *unfiltered;
+//@property(nonatomic, retain) IBOutlet GraphView *filtered;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem *pause;
 @property(nonatomic, retain) IBOutlet UILabel *filterLabel;
-@property (retain, nonatomic) IBOutlet UILabel *minX_label;
-@property (retain, nonatomic) IBOutlet UILabel *minY_label;
-@property (retain, nonatomic) IBOutlet UILabel *minZ_label;
-@property (retain, nonatomic) IBOutlet UILabel *maxX_label;
-@property (retain, nonatomic) IBOutlet UILabel *maxY_label;
-@property (retain, nonatomic) IBOutlet UILabel *maxZ_label;
+@property (retain, nonatomic) IBOutlet UILabel *player1X_label;
+@property (retain, nonatomic) IBOutlet UILabel *player1Y_label;
+@property (retain, nonatomic) IBOutlet UILabel *player1Z_label;
+
+@property (retain, nonatomic) IBOutlet UILabel *player2X_label;
+@property (retain, nonatomic) IBOutlet UILabel *player2Y_label;
+@property (retain, nonatomic) IBOutlet UILabel *player2Z_label;
 @property (retain, nonatomic) IBOutlet UILabel *test_label;
 
--(IBAction)pauseOrResume:(id)sender;
+-(IBAction)pausePlayer1:(id)sender;
+-(IBAction)resumePlayer1:(id)sender;
+
+-(IBAction)pausePlayer2:(id)sender;
+-(IBAction)resumePlayer2:(id)sender;
+
 -(IBAction)clearPressed:(id)sender;
+-(IBAction)switchView:(id)sender;
+
 
 //-(IBAction)filterSelect:(id)sender;
 //-(IBAction)adaptiveSelect:(id)sender;

@@ -46,16 +46,19 @@ Copyright (C) 2010 Apple Inc. All Rights Reserved.
 */
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
 
 @implementation AppDelegate
 
-@synthesize window, viewController;
+@synthesize window, viewController, secondViewController;
 
 -(void)applicationDidFinishLaunching:(UIApplication*)application
 {
+    
 	// Add the view controller's view to the window
-	[window addSubview:viewController.view];
+	//[window addSubview:viewController.view];
+//    	[window addSubview:secondViewController.view];
+  [self.window setRootViewController:viewController];
+    
 }
 
 // Release resources.
@@ -63,6 +66,7 @@ Copyright (C) 2010 Apple Inc. All Rights Reserved.
 {
     [window release];
 	[viewController release];
+	[secondViewController release];
     [super dealloc];
 }
 

@@ -1,7 +1,7 @@
 /*
-     File: MainViewController.m
+ File: MainViewController.m
  Abstract: Responsible for all UI interactions with the user and the accelerometer
-  Version: 2.5
+ Version: 2.5
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -43,11 +43,13 @@
  
  Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
-*/
+ */
 
 #import "MainViewController.h"
 #import "GraphView.h"
 #import "AccelerometerFilter.h"
+
+
 
 #define kUpdateFrequency	1000.0
 #define kLocalizedPause		NSLocalizedString(@"Pause","pause taking samples")
@@ -63,14 +65,21 @@
 
 @implementation MainViewController
 
-@synthesize unfiltered, filtered, pause, filterLabel, minZ_label;
+@synthesize pause, filterLabel, player1Z_label, scrollView;
 
 // Implement viewDidLoad to do additional setup after loading the view.
 -(void)viewDidLoad
 {
+    //---set the viewable frame of the scroll view---
+    scrollView.frame = CGRectMake(0, 0, 320, 1400);
+    
+    //---set the content size of the scroll view---
+    [scrollView setContentSize:CGSizeMake(320, 1400)];
+    
 	[super viewDidLoad];
 	pause.possibleTitles = [NSSet setWithObjects:kLocalizedPause, kLocalizedResume, nil];
-	isPaused = YES;
+	player1IsPaused = YES;
+    player2IsPaused = YES;
 	useAdaptive = YES;
 	[self changeFilter:[LowpassFilter class]];
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/kUpdateFrequency];
@@ -78,21 +87,34 @@
 	
 	[unfiltered setIsAccessibilityElement:YES];
 	[unfiltered setAccessibilityLabel:NSLocalizedString(@"unfilteredGraph", @"")];
-
+    
 	[filtered setIsAccessibilityElement:YES];
-	[filtered setAccessibilityLabel:NSLocalizedString(@"filteredGraph", @"")];
+	[filtered setAccessibilityLabel:NSLocalizedString(@"filteredGraph", @"")];   
+//    
+//    // The account scrolling area
+//    // define the area that is initially visable
+//    scrollView.frame = CGRectMake(74, 261, 620, 354);
+//    // then define how much they can scroll it
+//    [scrollView setContentSize:CGSizeMake(1220, 354)];
 }
 
 -(void)viewDidUnload
 {
 	[super viewDidUnload];
-	self.unfiltered = nil;
-	self.filtered = nil;
+    [scrollView release];
+//	self.unfiltered = nil;
+//	self.filtered = nil;
 	self.pause = nil;
 	self.filterLabel = nil;
-	self.minZ_label = nil;
+	self.player1Z_label = nil;
 }
 
+-(void)switchView:(id)sender
+{
+     test_label.text = @"yeak";
+    //[window addSubview:viewController.view];
+
+}
 
 //Red: X
 //Green: Y
@@ -106,37 +128,67 @@
     int y = 0;
     if (isTouched){
         
-        minX_label.text = [NSString stringWithFormat:@"%g", acceleration.x];
-        minY_label.text = [NSString stringWithFormat:@"%g", acceleration.y];
-        minZ_label.text = [NSString stringWithFormat:@"%g", acceleration.z];
-        maxX_label.text = [NSString stringWithFormat:@"%g", acceleration.x];
-        maxY_label.text = [NSString stringWithFormat:@"%g", acceleration.y];
-        maxZ_label.text = [NSString stringWithFormat:@"%g", acceleration.z];
+        player1X_label.text = [NSString stringWithFormat:@"%g", acceleration.x];
+        player1Y_label.text = [NSString stringWithFormat:@"%g", acceleration.y];
+        player1Z_label.text = [NSString stringWithFormat:@"%g", acceleration.z];
+        player2X_label.text = [NSString stringWithFormat:@"%g", acceleration.x];
+        player2Y_label.text = [NSString stringWithFormat:@"%g", acceleration.y];
+        player2Z_label.text = [NSString stringWithFormat:@"%g", acceleration.z];
         test_label.text = [NSString stringWithFormat:@"%g", acceleration.z];
     }
     
     
 	// Update the accelerometer graph view
-	if(!isPaused)
+	if(!player1IsPaused)
 	{
-        // x = 
-        test_label.text = 
         
-        //text.text = [NSString stringWithFormat:@"%g", acceleration.z];
-        minX_label.text = (acceleration.x < [minX_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.x] : minX_label.text;
-        minY_label.text = (acceleration.y < [minY_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.y] : minY_label.text;
-        minZ_label.text = (acceleration.z < [minZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : minZ_label.text;
+        NSArray *accel = [filter addAcceleration:acceleration];
         
-        maxX_label.text = (acceleration.x > [maxX_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.x] : maxX_label.text;
-        maxY_label.text = (acceleration.y > [maxY_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.y] : maxY_label.text;
-        maxZ_label.text = (acceleration.z > [maxZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : maxZ_label.text;
         
-//        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
-        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
-		//maxZ = [filter addAcceleration:acceleration touch:isTouched];
-		
-		//[filtered addX:filter.z y:y z:maxZ];
+		[filtered addX:filter.x y:filter.y z:filter.z];
+        
+        NSString *filteredX = [accel objectAtIndex: 0];
+        NSString *filteredY = [accel objectAtIndex: 1];
+        NSString *filteredZ = [accel objectAtIndex: 2];
+        
+        player1X_label.text = filteredX;
+        player1Y_label.text = filteredY;
+        player1Z_label.text = filteredZ;
+        
+        
+        <TODO> Add in Max X 
+
+//        player1X_label.text = (filteredX.doubleValue > [player1X_label.text doubleValue])? filteredX : player1X_label.text;
+//        player1Y_label.text = (filteredY.doubleValue > [player1Y_label.text doubleValue])? filteredY : player1Y_label.text;
+//        player1Z_label.text = (filteredZ.doubleValue > [player1Z_label.text doubleValue])? filteredZ : player1Z_label.text;
+//        
 	}
+    
+    if(!player2IsPaused)
+	{
+        
+        NSArray *accel = [filter addAcceleration:acceleration];
+        
+        
+		[filtered addX:filter.x y:filter.y z:filter.z];
+        
+        NSString *filteredX = [accel objectAtIndex: 0];
+        NSString *filteredY = [accel objectAtIndex: 1];
+        NSString *filteredZ = [accel objectAtIndex: 2];
+
+        
+        player2X_label.text = filteredX;
+        player2Y_label.text = filteredY;
+        player2Z_label.text = filteredZ;
+//              
+//        player2X_label.text = (filteredX.doubleValue > [player2X_label.text doubleValue])? filteredX : player2X_label.text;
+//        player2Y_label.text = (filteredY.doubleValue > [player2Y_label.text doubleValue])? filteredY : player2Y_label.text;
+//        player2Z_label.text = (filteredZ.doubleValue > [player2Z_label.text doubleValue])? filteredZ : player2Z_label.text;
+//
+        
+      	}
+    
+    
     isTouched = FALSE;
 }
 
@@ -156,25 +208,37 @@
 		[filter release];
 		filter = [[filterClass alloc] initWithSampleRate:kUpdateFrequency cutoffFrequency:5.0];
 		// Set the adaptive flag
-//		filter.adaptive = useAdaptive;
+        //		filter.adaptive = useAdaptive;
 		// And update the filterLabel with the new filter name.
 		filterLabel.text = filter.name;
 	}
 }
 
--(IBAction)pauseOrResume:(id)sender
+-(IBAction)pausePlayer1:(id)sender
 {
-	if(isPaused)
-	{
-		// If we're paused, then resume and set the title to "Pause"
-		isPaused = NO;
-		pause.title = kLocalizedPause;	}
-	else
-	{
-		// If we are not paused, then pause and set the title to "Resume"
-		isPaused = YES;
-		pause.title = kLocalizedResume;
-	}
+	player1IsPaused = YES;
+	
+	// Inform accessibility clients that the pause/resume button has changed.
+	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+}
+-(IBAction)resumePlayer1:(id)sender
+{
+	player1IsPaused = NO;
+	
+	// Inform accessibility clients that the pause/resume button has changed.
+	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+}
+
+-(IBAction)pausePlayer2:(id)sender
+{
+	player2IsPaused = YES;
+	
+	// Inform accessibility clients that the pause/resume button has changed.
+	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+}
+-(IBAction)resumePlayer2:(id)sender
+{
+	player2IsPaused = NO;
 	
 	// Inform accessibility clients that the pause/resume button has changed.
 	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
@@ -182,43 +246,43 @@
 
 -(IBAction)clearPressed:(id)sender
 {
-    minX_label.text = @"0.0";
-    minY_label.text = @"0.0";
-    minZ_label.text = @"0.0";
-    maxX_label.text = @"0.0";
-    maxY_label.text = @"0.0";
-    maxZ_label.text = @"0.0";
+    player1X_label.text = @"0.0";
+    player1Y_label.text = @"0.0";
+    player1Z_label.text = @"0.0";
+    player2X_label.text = @"0.0";
+    player2Y_label.text = @"0.0";
+    player2Z_label.text = @"0.0";
 }
 /*d
--(IBAction)filterSelect:(id)sender
-{
-	if([sender selectedSegmentIndex] == 0)
-	{
-		// Index 0 of the segment selects the lowpass filter
-		[self changeFilter:[LowpassFilter class]];
-	}
-	else
-	{
-		// Index 1 of the segment selects the highpass filter
-		[self changeFilter:[HighpassFilter class]];
-	}
-
-	// Inform accessibility clients that the filter has changed.
-	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
-}
-
--(IBAction)adaptiveSelect:(id)sender
-{
-	// Index 1 is to use the adaptive filter, so if selected then set useAdaptive appropriately
-	useAdaptive = [sender selectedSegmentIndex] == 1;
-	// and update our filter and filterLabel
-	filter.adaptive = useAdaptive;
-	filterLabel.text = filter.name;
-	
-	// Inform accessibility clients that the adaptive selection has changed.
-	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
-}
-*/
+ -(IBAction)filterSelect:(id)sender
+ {
+ if([sender selectedSegmentIndex] == 0)
+ {
+ // Index 0 of the segment selects the lowpass filter
+ [self changeFilter:[LowpassFilter class]];
+ }
+ else
+ {
+ // Index 1 of the segment selects the highpass filter
+ [self changeFilter:[HighpassFilter class]];
+ }
+ 
+ // Inform accessibility clients that the filter has changed.
+ UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+ }
+ 
+ -(IBAction)adaptiveSelect:(id)sender
+ {
+ // Index 1 is to use the adaptive filter, so if selected then set useAdaptive appropriately
+ useAdaptive = [sender selectedSegmentIndex] == 1;
+ // and update our filter and filterLabel
+ filter.adaptive = useAdaptive;
+ filterLabel.text = filter.name;
+ 
+ // Inform accessibility clients that the adaptive selection has changed.
+ UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+ }
+ */
 -(void)dealloc
 {
 	// clean up everything.
