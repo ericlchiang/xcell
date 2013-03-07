@@ -15,7 +15,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+<<<<<<< HEAD
                BuildableName = "JumperCell.app"
+=======
+<<<<<<< HEAD
+               BuildableName = "JumperCell.app"
+=======
+               BuildableName = "Xcell.app"
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
+>>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
                BlueprintName = "AccelerometerGraph"
                ReferencedContainer = "container:AccelerometerGraph.xcodeproj">
             </BuildableReference>
@@ -33,7 +41,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+<<<<<<< HEAD
             BuildableName = "JumperCell.app"
+=======
+<<<<<<< HEAD
+            BuildableName = "JumperCell.app"
+=======
+            BuildableName = "Xcell.app"
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
+>>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
             BlueprintName = "AccelerometerGraph"
             ReferencedContainer = "container:AccelerometerGraph.xcodeproj">
          </BuildableReference>
@@ -52,7 +68,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+<<<<<<< HEAD
             BuildableName = "JumperCell.app"
+=======
+<<<<<<< HEAD
+            BuildableName = "JumperCell.app"
+=======
+            BuildableName = "Xcell.app"
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
+>>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
             BlueprintName = "AccelerometerGraph"
             ReferencedContainer = "container:AccelerometerGraph.xcodeproj">
          </BuildableReference>
@@ -70,7 +94,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+<<<<<<< HEAD
             BuildableName = "JumperCell.app"
+=======
+<<<<<<< HEAD
+            BuildableName = "JumperCell.app"
+=======
+            BuildableName = "Xcell.app"
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
+>>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
             BlueprintName = "AccelerometerGraph"
             ReferencedContainer = "container:AccelerometerGraph.xcodeproj">
          </BuildableReference>

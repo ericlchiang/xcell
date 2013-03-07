@@ -110,7 +110,15 @@ double Clamp(double v, double min, double max)
 }
 
 //THIS IS IT
+<<<<<<< HEAD
 -(NSArray*)addAcceleration:(UIAcceleration*)accel
+=======
+<<<<<<< HEAD
+-(NSArray*)addAcceleration:(UIAcceleration*)accel
+=======
+-(void)addAcceleration:(UIAcceleration*)accel
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
+>>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
 {
 	double alpha = filterConstant*10;
 	

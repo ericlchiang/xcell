@@ -74,8 +74,13 @@
 
 @property (nonatomic, retain) UIScrollView *scrollView;
 
+<<<<<<< HEAD
 //@property(nonatomic, retain) IBOutlet GraphView *unfiltered;
 //@property(nonatomic, retain) IBOutlet GraphView *filtered;
+=======
+@property(nonatomic, retain) IBOutlet GraphView *unfiltered;
+@property(nonatomic, retain) IBOutlet GraphView *filtered;
+>>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
 @property(nonatomic, retain) IBOutlet UIBarButtonItem *pause;
 @property(nonatomic, retain) IBOutlet UILabel *filterLabel;
 @property (retain, nonatomic) IBOutlet UILabel *player1X_label;
@@ -94,8 +99,17 @@
 -(IBAction)resumePlayer2:(id)sender;
 
 -(IBAction)clearPressed:(id)sender;
+<<<<<<< HEAD
 -(IBAction)switchView:(id)sender;
 
+=======
+<<<<<<< HEAD
+-(IBAction)switchView:(id)sender;
+
+=======
+-(IBAction)SwitchView:(id)sender;
+>>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
+>>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
 
 //-(IBAction)filterSelect:(id)sender;
 //-(IBAction)adaptiveSelect:(id)sender;
