@@ -64,19 +64,12 @@
 @end
 
 @implementation MainViewController
-
-<<<<<<< HEAD
 @synthesize pause, filterLabel, player1Z_label, scrollView;
-=======
-@synthesize unfiltered, filtered, pause, filterLabel, minZ_label, scrollView;
->>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
 
 // Implement viewDidLoad to do additional setup after loading the view.
 -(void)viewDidLoad
 {
-    //---set the viewable frame of the scroll view---
-<<<<<<< HEAD
-    scrollView.frame = CGRectMake(0, 0, 320, 1400);
+    //---set the viewable frame of the scroll view---    scrollView.frame = CGRectMake(0, 0, 320, 1400);
     
     //---set the content size of the scroll view---
     [scrollView setContentSize:CGSizeMake(320, 1400)];
@@ -85,16 +78,12 @@
 	pause.possibleTitles = [NSSet setWithObjects:kLocalizedPause, kLocalizedResume, nil];
 	player1IsPaused = YES;
     player2IsPaused = YES;
-=======
-    scrollView.frame = CGRectMake(0, 0, 320, 460);
-    
-    //---set the content size of the scroll view---
-    [scrollView setContentSize:CGSizeMake(320, 713)];
-    
-	[super viewDidLoad];
-	pause.possibleTitles = [NSSet setWithObjects:kLocalizedPause, kLocalizedResume, nil];
-	isPaused = NO;
->>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
+    player1Max = 0.0;
+    player2Max = 0.0;
+    player1GameFinished = NO;
+    player2GameFinished = NO;
+    player2GameStarted = NO;
+    player1GameStarted = NO;
 	useAdaptive = YES;
 	[self changeFilter:[LowpassFilter class]];
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:1.0/kUpdateFrequency];
@@ -104,26 +93,26 @@
 	[unfiltered setAccessibilityLabel:NSLocalizedString(@"unfilteredGraph", @"")];
     
 	[filtered setIsAccessibilityElement:YES];
-	[filtered setAccessibilityLabel:NSLocalizedString(@"filteredGraph", @"")];   
-//    
-//    // The account scrolling area
-//    // define the area that is initially visable
-//    scrollView.frame = CGRectMake(74, 261, 620, 354);
-//    // then define how much they can scroll it
-//    [scrollView setContentSize:CGSizeMake(1220, 354)];
+	[filtered setAccessibilityLabel:NSLocalizedString(@"filteredGraph", @"")];
+    //
+    //    // The account scrolling area
+    //    // define the area that is initially visable
+    //    scrollView.frame = CGRectMake(74, 261, 620, 354);
+    //    // then define how much they can scroll it
+    //    [scrollView setContentSize:CGSizeMake(1220, 354)];
+    
+    
+    
+    
+   
 }
 
 -(void)viewDidUnload
 {
 	[super viewDidUnload];
     [scrollView release];
-<<<<<<< HEAD
-//	self.unfiltered = nil;
-//	self.filtered = nil;
-=======
-	self.unfiltered = nil;
-	self.filtered = nil;
->>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
+    //	self.unfiltered = nil;
+    //	self.filtered = nil;
 	self.pause = nil;
 	self.filterLabel = nil;
 	self.player1Z_label = nil;
@@ -131,9 +120,9 @@
 
 -(void)switchView:(id)sender
 {
-     test_label.text = @"yeak";
+    test_label.text = @"yeak";
     //[window addSubview:viewController.view];
-
+    
 }
 
 //Red: X
@@ -160,13 +149,7 @@
     
 	// Update the accelerometer graph view
 	if(!player1IsPaused)
-	{
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
-        
-        NSArray *accel = [filter addAcceleration:acceleration];
+	{        NSArray *accel = [filter addAcceleration:acceleration];
         
         
 		[filtered addX:filter.x y:filter.y z:filter.z];
@@ -174,50 +157,21 @@
         NSString *filteredX = [accel objectAtIndex: 0];
         NSString *filteredY = [accel objectAtIndex: 1];
         NSString *filteredZ = [accel objectAtIndex: 2];
-<<<<<<< HEAD
-        
         player1X_label.text = filteredX;
         player1Y_label.text = filteredY;
         player1Z_label.text = filteredZ;
         
+               
+        //<TODO> Add in Max X
+       // player1Max_label.text
         
-        <TODO> Add in Max X 
-
-//        player1X_label.text = (filteredX.doubleValue > [player1X_label.text doubleValue])? filteredX : player1X_label.text;
-//        player1Y_label.text = (filteredY.doubleValue > [player1Y_label.text doubleValue])? filteredY : player1Y_label.text;
-//        player1Z_label.text = (filteredZ.doubleValue > [player1Z_label.text doubleValue])? filteredZ : player1Z_label.text;
-//        
-=======
-=======
-        minX_label.text = (acceleration.x < [minX_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.x] : minX_label.text;
-        minY_label.text = (acceleration.y < [minY_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.y] : minY_label.text;
-        minZ_label.text = (acceleration.z < [minZ_label.text doubleValue])? [NSString stringWithFormat:@"%g", acceleration.z] : minZ_label.text;
->>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
+        player1Max_label.text = (filteredY.doubleValue > [player1Max_label.text doubleValue])? filteredY : player1Max_label.text;
         
-        
-<<<<<<< HEAD
-        minX_label.text = (filteredX.doubleValue < [minX_label.text doubleValue])? filteredX : minX_label.text;
-        minY_label.text = (filteredY.doubleValue < [minY_label.text doubleValue])? filteredY : minY_label.text;
-        minZ_label.text = (filteredZ.doubleValue < [minZ_label.text doubleValue])? filteredZ : minZ_label.text;
-        
-        maxX_label.text = (filteredX.doubleValue > [maxX_label.text doubleValue])? filteredX : maxX_label.text;
-        maxY_label.text = (filteredY.doubleValue > [maxY_label.text doubleValue])? filteredY : maxY_label.text;
-        maxZ_label.text = (filteredZ.doubleValue > [maxZ_label.text doubleValue])? filteredZ : maxZ_label.text;
-        
-        //        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
-        //        [filtered addX:acceleration.x y:acceleration.y z:acceleration.z];
-      
-=======
-//        [unfiltered addX:acceleration.x y:acceleration.y z:acceleration.z];
-//        [filtered addX:acceleration.x y:acceleration.y z:acceleration.z];
-
-        [filter addAcceleration:acceleration];
-		[filtered addX:filter.x y:filter.y z:filter.z];
->>>>>>> bd5374b930ff5d6f00af6d0bd3c3a7cd3d0287f6
-        
-		//[filtered addX:filter.z y:y z:maxZ];
->>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
-	}
+        player1Leap_label.text = [NSString stringWithFormat:@"%g", player1Max_label.text.doubleValue*20-0.3];
+        //        player1Y_label.text = (filteredY.doubleValue > [player1Y_label.text doubleValue])? filteredY : player1Y_label.text;
+        //        player1Z_label.text = (filteredZ.doubleValue > [player1Z_label.text doubleValue])? filteredZ : player1Z_label.text;
+        //
+    }
     
     if(!player2IsPaused)
 	{
@@ -230,18 +184,21 @@
         NSString *filteredX = [accel objectAtIndex: 0];
         NSString *filteredY = [accel objectAtIndex: 1];
         NSString *filteredZ = [accel objectAtIndex: 2];
-
+        
         
         player2X_label.text = filteredX;
         player2Y_label.text = filteredY;
         player2Z_label.text = filteredZ;
-//              
-//        player2X_label.text = (filteredX.doubleValue > [player2X_label.text doubleValue])? filteredX : player2X_label.text;
-//        player2Y_label.text = (filteredY.doubleValue > [player2Y_label.text doubleValue])? filteredY : player2Y_label.text;
-//        player2Z_label.text = (filteredZ.doubleValue > [player2Z_label.text doubleValue])? filteredZ : player2Z_label.text;
-//
         
-      	}
+        
+        //
+        player2Max_label.text = (filteredY.doubleValue > [player2Max_label.text doubleValue])? filteredY : player2Max_label.text;
+        player2Leap_label.text = [NSString stringWithFormat:@"%g", player2Max_label.text.doubleValue*20-0.3];
+        //        player2Y_label.text = (filteredY.doubleValue > [player2Y_label.text doubleValue])? filteredY : player2Y_label.text;
+        //        player2Z_label.text = (filteredZ.doubleValue > [player2Z_label.text doubleValue])? filteredZ : player2Z_label.text;
+        //
+        
+    }
     
     
     isTouched = FALSE;
@@ -271,30 +228,41 @@
 
 -(IBAction)pausePlayer1:(id)sender
 {
-	player1IsPaused = YES;
+    if(player1GameStarted)
+    {
+        player1IsPaused = YES;
+        player1GameFinished = YES;
+    }
 	
 	// Inform accessibility clients that the pause/resume button has changed.
 	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
 }
 -(IBAction)resumePlayer1:(id)sender
 {
-	player1IsPaused = NO;
+    if(!player1GameStarted && !player1GameFinished)
+        player1IsPaused = NO;
+    player1GameStarted = YES;
 	
 	// Inform accessibility clients that the pause/resume button has changed.
 	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
 }
-<<<<<<< HEAD
-
 -(IBAction)pausePlayer2:(id)sender
 {
-	player2IsPaused = YES;
-	
+    if(player2GameStarted)
+    {
+        player2IsPaused = YES;
+        player2GameFinished = YES;
+    }
+
 	// Inform accessibility clients that the pause/resume button has changed.
 	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
 }
 -(IBAction)resumePlayer2:(id)sender
 {
-	player2IsPaused = NO;
+	
+    if(!player2GameStarted && !player2GameFinished)
+        player2IsPaused = NO;
+    player2GameStarted = YES;
 	
 	// Inform accessibility clients that the pause/resume button has changed.
 	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
@@ -308,9 +276,18 @@
     player2X_label.text = @"0.0";
     player2Y_label.text = @"0.0";
     player2Z_label.text = @"0.0";
+    player1Max_label.text = @"0.00";
+    player2Max_label.text = @"0.00";
+    
+    player1Leap_label.text = @"0.00";
+    player2Leap_label.text = @"0.00";
+    
+    player1GameFinished = NO;
+    player2GameFinished = NO;
+    player2GameStarted = NO;
+    player1GameStarted = NO;
+
 }
-=======
->>>>>>> 3ae93f38403ffe34293e2554d63ac094babf3f7c
 /*d
  -(IBAction)filterSelect:(id)sender
  {
